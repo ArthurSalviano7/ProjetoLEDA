@@ -58,13 +58,13 @@ public class TransformarData {
 
     private String formatarData(String data){ // Transforma de YYYY-MM-DD para o formato DD/MM/AAAA //
         
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); //Define o formato que irá aceitar//
         String dateToStr = null;
 
         try{
-            Date novaData = formatter.parse(data);
-            formatter = new SimpleDateFormat("dd/MM/yyyy");
-            dateToStr = formatter.format(novaData);
+            Date novaData = formatter.parse(data);                   //Transforma de String para Date//
+            formatter = new SimpleDateFormat("dd/MM/yyyy"); //Define o novo Formato desejado//
+            dateToStr = formatter.format(novaData);                 //Transforma de Date para String//
         }
         catch(ParseException e){
             e.printStackTrace();
