@@ -9,20 +9,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class TransformarData {
-    private String caminho;
-
-    public TransformarData(String caminho){
-        this.caminho = caminho;
-    }
+public class TransformarData extends Funcoes{
 
     public void transformacao(String caminho){
 
         String colunas;
         String linha = null;
+        int i;
+        Registro vetorRegistro[] = new Registro[12];
 
         try{
-            FileWriter novoArquivo = new FileWriter("b3stocks_T1.csv"); //Responsável pela criação  do novo arquivo formatado
+            FileWriter novoArquivo = new FileWriter("b3stocks_T1.csv"); //Criação do novo arquivo para escrita
             BufferedReader arq = new BufferedReader(new InputStreamReader(new FileInputStream(caminho))); //Responsável pela leitura do arquivo a ser transformado// 
             
             PrintWriter escrever = new PrintWriter(novoArquivo);
@@ -34,6 +31,7 @@ public class TransformarData {
                 String arrayDados[] = separarDados(linha);
 
                 escrever.println(formatarData(arrayDados[0])+","+arrayDados[1]+","+arrayDados[2]+","+arrayDados[3]+","+arrayDados[4]+","+arrayDados[5]+","+arrayDados[6]);
+                
             }
 
             System.out.println("Arquivo \"b3stocks_T1.csv\" criado com sucesso.");
@@ -49,11 +47,7 @@ public class TransformarData {
 
 
 
-    private String[] separarDados(String linha){  //Separa os dados de cada linha por vírgula e armazena no array
-        String valores[] = linha.split(",");
-
-        return valores;
-    }//Fim do método separarDados()
+   
 
 
     private String formatarData(String data){ // Transforma de YYYY-MM-DD para o formato DD/MM/AAAA //
