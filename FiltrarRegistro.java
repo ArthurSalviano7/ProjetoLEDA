@@ -28,23 +28,20 @@ public class FiltrarRegistro extends Funcoes{
             Registro[] vetorRegistro = construirVetorRegistro(caminho); //Criação do vetor de objetos do tipo Registro
             OrdenarPorData(vetorRegistro);
             
-            float maiorVolume = (float)(vetorRegistro[0].getVolume());
+            float maiorVolume = vetorRegistro[0].getVolume();
             int indexMaiorVolume = 0;
 
             while((i < vetorRegistro.length - 1)) {
                 
-                 
-                if(vetorRegistro[i].getData().equals(vetorRegistro[i+1].getData())){
+                if(vetorRegistro[i].getData().equals(vetorRegistro[i+1].getData()) && ((i+1) != vetorRegistro.length-1)){
                     if(vetorRegistro[i+1].getVolume() > maiorVolume){
                         maiorVolume = vetorRegistro[i+1].getVolume();
                         indexMaiorVolume = i+1;
                     }
                 }else{
-                    escrever.printf("%td/%tm/%tY,", vetorRegistro[indexMaiorVolume].getData(), vetorRegistro[indexMaiorVolume].getData(),vetorRegistro[indexMaiorVolume].getData());
-                    //escrever.printf("%s,%.2f,%.2f,%.2f,%.2f,%.2f\n", vetorRegistro[indexMaiorVolume].getTicker(), vetorRegistro[indexMaiorVolume].getOpen(), vetorRegistro[indexMaiorVolume].getClose(), vetorRegistro[indexMaiorVolume].getLow(), vetorRegistro[indexMaiorVolume].getHigh(), vetorRegistro[indexMaiorVolume].getVolume());
-                    escrever.println(vetorRegistro[indexMaiorVolume].getTicker()+","+vetorRegistro[indexMaiorVolume].getOpen()+","+vetorRegistro[indexMaiorVolume].getClose()+","+vetorRegistro[indexMaiorVolume].getLow()+","+vetorRegistro[indexMaiorVolume].getHigh()+","+vetorRegistro[indexMaiorVolume].getVolume());
-
+                    escrever.println(vetorRegistro[indexMaiorVolume].toString());
                     maiorVolume = vetorRegistro[i+1].getVolume();
+                    indexMaiorVolume = i + 1;
                 }
 
                 i++;

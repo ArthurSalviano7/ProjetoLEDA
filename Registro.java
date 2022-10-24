@@ -9,10 +9,11 @@ public class Registro {
     private float high;
     private float low;
     private float volume;
+    private String linha;
 
     Registro(){}
 
-    public Registro(Date data, String ticker, float open, float close, float high, float low, float volume) {
+    public Registro(Date data, String ticker, float open, float close, float high, float low, float volume, String linha) {
         this.data = data;
         this.ticker = ticker;
         this.open = open;
@@ -20,6 +21,7 @@ public class Registro {
         this.high = high;
         this.low = low;
         this.volume = volume;
+        this.linha = linha;
     }
 
 
@@ -79,13 +81,18 @@ public class Registro {
     public void setVolume(float volume) {
         this.volume = volume;
     }
-    
+
+    public String getLinha() {
+        return linha;
+    }
+
+    public void setLinha(String linha) {
+        this.linha = linha;
+    }
 
     @Override
 
     public String toString(){
-        return data + "," + ticker + "," + open + "," + close + "," + high + "," + low + "," + volume; 
+        return linha; 
     }
-
-
 }

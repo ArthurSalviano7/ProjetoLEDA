@@ -23,6 +23,7 @@ public abstract class Funcoes {
         float highLinha;
         float lowLinha;
         float volumeLinha;
+        String registroLinha;
 
         String linha = null;
         int i = 0;
@@ -51,7 +52,8 @@ public abstract class Funcoes {
                 highLinha = Float.parseFloat(arrayDados[4]);
                 lowLinha = Float.parseFloat(arrayDados[5]);
                 volumeLinha = Float.parseFloat(arrayDados[6]);
-                vetorRegistro[i] = new Registro(dataLinha, tickerLinha, openLinha, closeLinha, highLinha, lowLinha, volumeLinha);
+                registroLinha = linha;
+                vetorRegistro[i] = new Registro(dataLinha, tickerLinha, openLinha, closeLinha, highLinha, lowLinha, volumeLinha, registroLinha);
 
                 i++;
                 //escrever.println(formatarData(arrayDados[0])+","+arrayDados[1]+","+arrayDados[2]+","+arrayDados[3]+","+arrayDados[4]+","+arrayDados[5]+","+arrayDados[6]);
