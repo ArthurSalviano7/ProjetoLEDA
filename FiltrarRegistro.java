@@ -4,6 +4,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
+import java.text.Format;
 
 
 public class FiltrarRegistro extends Funcoes{
@@ -12,9 +14,8 @@ public class FiltrarRegistro extends Funcoes{
 
         String colunas;
         String linha = null;
+        String conversao = null;
         int i = 0;
-
-        float maiorVolume;
 
         try{
             FileWriter novoArquivo = new FileWriter("b3stocks_F1.csv"); //Criação do novo arquivo para escrita
@@ -26,31 +27,40 @@ public class FiltrarRegistro extends Funcoes{
 
             Registro[] vetorRegistro = construirVetorRegistro(caminho); //Criação do vetor de objetos do tipo Registro
             OrdenarPorData(vetorRegistro);
-            while((i < vetorRegistro.length)) {
-                
-                //String arrayDados[] = separarDados(linha);
+            
+            float maiorVolume = (float)(vetorRegistro[0].getVolume());
+            int indexMaiorVolume = 0;
 
-                escrever.println(vetorRegistro[i].getData() +","+vetorRegistro[i].getTicker()+","+vetorRegistro[i].getOpen()+","+vetorRegistro[i].getClose()+","+vetorRegistro[i].getLow()+","+vetorRegistro[i].getHigh()+","+vetorRegistro[i].getVolume());
+            while((i < vetorRegistro.length - 1)) {
+                
+                 
+                if(vetorRegistro[i].getData().equals(vetorRegistro[i+1].getData())){
+                    if(vetorRegistro[i+1].getVolume() > maiorVolume){
+                        maiorVolume = vetorRegistro[i+1].getVolume();
+                        indexMaiorVolume = i+1;
+                    }
+                }else{
+                    escrever.printf("%td/%tm/%tY,", vetorRegistro[indexMaiorVolume].getData(), vetorRegistro[indexMaiorVolume].getData(),vetorRegistro[indexMaiorVolume].getData());
+                    //escrever.printf("%s,%.2f,%.2f,%.2f,%.2f,%.2f\n", vetorRegistro[indexMaiorVolume].getTicker(), vetorRegistro[indexMaiorVolume].getOpen(), vetorRegistro[indexMaiorVolume].getClose(), vetorRegistro[indexMaiorVolume].getLow(), vetorRegistro[indexMaiorVolume].getHigh(), vetorRegistro[indexMaiorVolume].getVolume());
+                    escrever.println(vetorRegistro[indexMaiorVolume].getTicker()+","+vetorRegistro[indexMaiorVolume].getOpen()+","+vetorRegistro[indexMaiorVolume].getClose()+","+vetorRegistro[indexMaiorVolume].getLow()+","+vetorRegistro[indexMaiorVolume].getHigh()+","+vetorRegistro[indexMaiorVolume].getVolume());
+
+                    maiorVolume = vetorRegistro[i+1].getVolume();
+                }
+
                 i++;
-            }
+            }//Fim do while
 
             System.out.println("Arquivo \"b3stocks_F1.csv\" criado com sucesso.");
 
             escrever.close();
             arq.close();
             novoArquivo.close();
-        }//Fim do bloco try externo
+        }//Fim do bloco try
         catch(IOException ex){
             System.out.println("Arquivo não encontrado!");
         }//Fim do catch
-
-        
-
-        //System.out.println(vetorRegistro[0].toString());
-        //System.out.println(vetorRegistro[vetorRegistro.length - 1].toString());
     
-    
-    }//Fim do método transformacao()
+    }//Fim do método filtrar()
 
     public Registro[] OrdenarPorData(Registro[] vetor){
 	    int j;
@@ -65,9 +75,7 @@ public class FiltrarRegistro extends Funcoes{
 				j = j-1;
 			}
 			vetor[j+1] = key;
-			
 		}
-
 		return vetor; 
-	}
+	}//Fim do metodo OrdenarPorData()
     }

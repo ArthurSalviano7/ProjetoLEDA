@@ -84,7 +84,7 @@ public class Registro {
     @Override
 
     public String toString(){
-        return data + "," + ticker + "," + open + "," + close + high + "," + low + "," + volume; 
+        return data + "," + ticker + "," + open + "," + close + "," + high + "," + low + "," + volume; 
     }
 
 
