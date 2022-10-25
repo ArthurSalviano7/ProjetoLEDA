@@ -1,6 +1,5 @@
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,8 +14,6 @@ public class TransformarData extends Funcoes{
 
         String colunas;
         String linha = null;
-        int i;
-        Registro vetorRegistro[] = new Registro[12];
 
         try{
             FileWriter novoArquivo = new FileWriter("b3stocks_T1.csv"); //Criação do novo arquivo para escrita
@@ -33,7 +30,6 @@ public class TransformarData extends Funcoes{
                 escrever.println(formatarData(arrayDados[0])+","+arrayDados[1]+","+arrayDados[2]+","+arrayDados[3]+","+arrayDados[4]+","+arrayDados[5]+","+arrayDados[6]);
                 
             }
-
             System.out.println("Arquivo \"b3stocks_T1.csv\" criado com sucesso.");
 
             escrever.close();
@@ -44,11 +40,7 @@ public class TransformarData extends Funcoes{
             System.out.println("Arquivo não encontrado!");
         }//Fim do catch
     }//Fim do método transformacao()
-
-
-
    
-
 
     private String formatarData(String data){ // Transforma de YYYY-MM-DD para o formato DD/MM/AAAA //
         

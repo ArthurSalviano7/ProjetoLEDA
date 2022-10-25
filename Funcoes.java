@@ -1,21 +1,23 @@
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public abstract class Funcoes {
     
-    public String[] separarDados(String linha){  //Separa os dados de cada linha por vírgula e armazena no array
+    public static String[] separarDados(String linha){  //Separa os dados de cada linha por vírgula e armazena no array
         String valores[] = linha.split(",");
 
         return valores;
     }//Fim do método separarDados()
 
 
-    public Registro[] construirVetorRegistro(String caminho){
+    public static Registro[] construirVetorRegistro(String caminho){
         Date dataLinha = null;
         String tickerLinha;
         float openLinha;
@@ -56,15 +58,32 @@ public abstract class Funcoes {
                 vetorRegistro[i] = new Registro(dataLinha, tickerLinha, openLinha, closeLinha, highLinha, lowLinha, volumeLinha, registroLinha);
 
                 i++;
-                //escrever.println(formatarData(arrayDados[0])+","+arrayDados[1]+","+arrayDados[2]+","+arrayDados[3]+","+arrayDados[4]+","+arrayDados[5]+","+arrayDados[6]);
             }//Fim do while
-
-            //System.out.println("Arquivo \"b3stocks_F1.csv\" criado com sucesso.");
             arq.close();
         }catch(IOException ex){
             System.out.println("Arquivo não encontrado!");
         }//Fim do catch
 
         return vetorRegistro;
+    }//Fim do metodo ConstruirVetorRegistro
+
+    public static void criarArquivo(Registro[] banco, String nomeArquivo){
+        int i = 0;
+        try{
+            FileWriter novoArquivo = new FileWriter(nomeArquivo); //Criação do novo arquivo para escrita            
+            PrintWriter escrever = new PrintWriter(novoArquivo);
+
+            escrever.println("datetime,ticker,open,close,high,low,volume");
+
+            while(i < banco.length){
+                escrever.println(banco[i].toString());
+                i++;
+            }
+            
+            escrever.close();
+            novoArquivo.close();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
     }
 }
