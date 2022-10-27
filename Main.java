@@ -29,5 +29,11 @@ public class Main extends Funcoes{
         QuickSortMedianaDe3 objQuickSortMedianaDe3 = new QuickSortMedianaDe3();
         objQuickSortMedianaDe3.gerarQuickSortMed3(baseDeDados);
 
+        MergeSort objMergeSort = new MergeSort();
+        objMergeSort.gerarMergeSort(baseDeDados);
+
+        HeapSort objHeapSort = new HeapSort();
+        objHeapSort.gerarHeapSort(baseDeDados);
+
     }//Fim do main
 }
