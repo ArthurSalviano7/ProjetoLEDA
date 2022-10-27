@@ -67,6 +67,67 @@ public abstract class Funcoes {
         return vetorRegistro;
     }//Fim do metodo ConstruirVetorRegistro
 
+    public static Registro[] construirVetorMenor(String caminho){
+        Date dataLinha = null;
+        String tickerLinha;
+        float openLinha;
+        float closeLinha;
+        float highLinha;
+        float lowLinha;
+        float volumeLinha;
+        String registroLinha;
+
+        String linha = null;
+        int i = 0;
+
+        Registro vetorRegistro[] = new Registro[149]; //Quantidade de linhas (Desconsiderando a primeira)//
+
+        try{
+            BufferedReader arq = new BufferedReader(new InputStreamReader(new FileInputStream(caminho)));
+
+            arq.readLine(); //Desconsidera a primeira linha;
+
+            while((linha = arq.readLine()) != null) {
+                
+                String arrayDados[] = separarDados(linha);
+
+                try{
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                    dataLinha = formatter.parse(arrayDados[0]); 
+                }catch(ParseException e){
+                    e.printStackTrace();
+                }
+                
+                tickerLinha = arrayDados[1];
+                openLinha = Float.parseFloat(arrayDados[2]);
+                closeLinha = Float.parseFloat(arrayDados[3]);
+                highLinha = Float.parseFloat(arrayDados[4]);
+                lowLinha = Float.parseFloat(arrayDados[5]);
+                volumeLinha = Float.parseFloat(arrayDados[6]);
+                registroLinha = linha;
+                vetorRegistro[i] = new Registro(dataLinha, tickerLinha, openLinha, closeLinha, highLinha, lowLinha, volumeLinha, registroLinha);
+
+                i++;
+            }//Fim do while
+            arq.close();
+        }catch(IOException ex){
+            System.out.println("Arquivo não encontrado!");
+        }//Fim do catch
+
+        return vetorRegistro;
+    }//Fim do metodo ConstruirVetorMenor
+
+    public Registro[] inverterVetor(Registro[] vetor){
+        int j = 0;
+        Registro[] A = new Registro[vetor.length];
+
+        for(int i = vetor.length - 1; i >= 0; i--){
+            A[j] = vetor[i];
+            j++;
+        }
+        return A;
+    }
+
     public static void criarArquivo(Registro[] banco, String nomeArquivo){
         int i = 0;
         try{
@@ -85,5 +146,11 @@ public abstract class Funcoes {
         }catch(IOException ex){
             ex.printStackTrace();
         }
+    }
+
+    public void troca(Registro vetor[], int i, int j){
+        Registro aux = vetor[i]; 
+        vetor[i] = vetor[j]; 
+        vetor[j] = aux; 
     }
 }

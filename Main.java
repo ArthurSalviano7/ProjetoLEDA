@@ -1,6 +1,3 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 public class Main extends Funcoes{
 
@@ -9,19 +6,28 @@ public class Main extends Funcoes{
         String caminho = "./b3_stocks_1994_2020.csv";
         String caminho2 = "./b3stocks_T1.csv";
         String caminho3 = "./b3stocks_F1.csv";
+        String caminhoTeste = "./b3_stock_teste.csv";
 
-        TransformarData transformarData = new TransformarData();
-        transformarData.transformacao(caminho);
+        //TransformarData transformarData = new TransformarData();
+        //transformarData.transformacao(caminho);
 
-        FiltrarRegistro filtrarRegistro = new FiltrarRegistro();
-        filtrarRegistro.filtrar(caminho2);
+        //FiltrarRegistro filtrarRegistro = new FiltrarRegistro();
+        //filtrarRegistro.filtrar(caminho2);
 
-        Registro[] baseDeDados = construirVetorRegistro(caminho2);
+        //Registro[] baseDeDados = construirVetorRegistro(caminho2); //verificar tamanho do vetor construido
+        Registro[] baseDeDados = construirVetorMenor(caminhoTeste); //Vetor menor para testar as ordenações
         
         InsertionSort objInsertionSort = new InsertionSort();
-        objInsertionSort.insertionSort(baseDeDados);
+        objInsertionSort.gerarInsertionSort(baseDeDados);
 
-        System.out.println("Dados Armazenados no Vetor");
+        SelectionSort objSelectionSort = new SelectionSort();
+        objSelectionSort.gerarSelectionSort(baseDeDados);
+
+        QuickSort objQuickSort = new QuickSort();
+        objQuickSort.gerarQuickSort(baseDeDados);
+
+        QuickSortMedianaDe3 objQuickSortMedianaDe3 = new QuickSortMedianaDe3();
+        objQuickSortMedianaDe3.gerarQuickSortMed3(baseDeDados);
 
     }//Fim do main
 }
