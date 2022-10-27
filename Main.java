@@ -5,7 +5,6 @@ public class Main extends Funcoes{
         
         String caminho = "./b3_stocks_1994_2020.csv";
         String caminho2 = "./b3stocks_T1.csv";
-        String caminho3 = "./b3stocks_F1.csv";
         String caminhoTeste = "./b3_stock_teste.csv";
 
         //TransformarData transformarData = new TransformarData();
@@ -14,7 +13,10 @@ public class Main extends Funcoes{
         //FiltrarRegistro filtrarRegistro = new FiltrarRegistro();
         //filtrarRegistro.filtrar(caminho2);
 
-        //Registro[] baseDeDados = construirVetorRegistro(caminho2); //verificar tamanho do vetor construido
+       // FiltrarMediaDiaria filtrarPorMedia = new FiltrarMediaDiaria();
+       // filtrarPorMedia.filtrarMediaDiaria(caminho2);
+
+        //Registro[] baseDeDados = construirVetorRegistro(caminho); //verificar tamanho do vetor construido
         Registro[] baseDeDados = construirVetorMenor(caminhoTeste); //Vetor menor para testar as ordenações
         
         InsertionSort objInsertionSort = new InsertionSort();
@@ -34,6 +36,7 @@ public class Main extends Funcoes{
 
         HeapSort objHeapSort = new HeapSort();
         objHeapSort.gerarHeapSort(baseDeDados);
+        
 
     }//Fim do main
 }

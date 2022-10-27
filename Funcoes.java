@@ -56,7 +56,6 @@ public abstract class Funcoes {
                 volumeLinha = Float.parseFloat(arrayDados[6]);
                 registroLinha = linha;
                 vetorRegistro[i] = new Registro(dataLinha, tickerLinha, openLinha, closeLinha, highLinha, lowLinha, volumeLinha, registroLinha);
-
                 i++;
             }//Fim do while
             arq.close();
