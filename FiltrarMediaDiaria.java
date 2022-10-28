@@ -10,7 +10,6 @@ public class FiltrarMediaDiaria extends Funcoes {
     public void filtrarMediaDiaria(String caminho){
 
         String colunas;
-        String linha = null;
         int i = 0;
 
         try{
@@ -22,7 +21,6 @@ public class FiltrarMediaDiaria extends Funcoes {
             escrever.println(colunas); //Escreve a primeira linha
 
             Registro[] vetorRegistro = construirVetorRegistro(caminho);
-            //System.out.println(vetorRegistro[0].toString()); //Criação do vetor de objetos do tipo Registro
             OrdenarPorData(vetorRegistro);
             
             float mediaDiaria = 0;
@@ -49,7 +47,6 @@ public class FiltrarMediaDiaria extends Funcoes {
                     j = 0;
                     mediaDiaria = 0;
                 }
-
                 i++;
             }//Fim do while
 

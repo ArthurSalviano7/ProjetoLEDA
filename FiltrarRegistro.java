@@ -10,7 +10,6 @@ public class FiltrarRegistro extends Funcoes{
     public void filtrar(String caminho){
 
         String colunas;
-        String linha = null;
         int i = 0;
 
         try{

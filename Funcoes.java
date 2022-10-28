@@ -79,7 +79,7 @@ public abstract class Funcoes {
         String linha = null;
         int i = 0;
 
-        Registro vetorRegistro[] = new Registro[149]; //Quantidade de linhas (Desconsiderando a primeira)//
+        Registro vetorRegistro[] = new Registro[10000]; //Quantidade de linhas (Desconsiderando a primeira)//
 
         try{
             BufferedReader arq = new BufferedReader(new InputStreamReader(new FileInputStream(caminho)));
@@ -136,6 +136,7 @@ public abstract class Funcoes {
             escrever.println("datetime,ticker,open,close,high,low,volume");
 
             while(i < banco.length){
+                //System.out.println(i);
                 escrever.println(banco[i].toString());
                 i++;
             }
