@@ -7,7 +7,7 @@ public class Main extends Funcoes{
         String caminho2 = "./b3stocks_T1.csv";
         String caminhoTeste = "./b3_stock_teste.csv";
         
-         
+        
         TransformarData transformarData = new TransformarData();
         transformarData.transformacao(caminho);
 
@@ -18,8 +18,8 @@ public class Main extends Funcoes{
         filtrarPorMedia.filtrarMediaDiaria(caminho2);
         
 
-        //Registro[] baseDeDados = construirVetorRegistro(caminho2);
-        Registro[] baseDeDados = construirVetorMenor(caminhoTeste); //Vetor menor para testar as ordenações
+        Registro[] baseDeDados = construirVetorRegistro(caminho2);
+        //Registro[] baseDeDados = construirVetorMenor(caminhoTeste); //Vetor menor para testar as ordenações
         
         InsertionSort objInsertionSort = new InsertionSort();
         objInsertionSort.gerarInsertionSort(baseDeDados);
